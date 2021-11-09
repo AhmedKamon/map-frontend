@@ -62,7 +62,7 @@ function App() {
     try {
       const res = await axios.post('/pins', newPin);
       setPins([...pins, res.data]);
-      setNewPlace(null);
+      // setNewPlace(null);
     } catch (error) {
       console.log(error);
     }
@@ -164,9 +164,18 @@ function App() {
                   <option value="4">4</option>
                   <option value="5">5</option>
                 </select>
-                <button className="submitBtn" type="submit">
+                <button
+                  className="submitBtn"
+                  type="submit"
+                  style={{ marginTop: '15px' }}
+                >
                   Add Pin
                 </button>
+                {!currentUser && (
+                  <span className="fail">
+                    Please login or register to add pin
+                  </span>
+                )}
               </form>
             </div>
           </Popup>
