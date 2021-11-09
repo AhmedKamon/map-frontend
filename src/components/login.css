@@ -1,0 +1,43 @@
+.LoginContainer{
+    width: 300px;
+    height: 200px;
+    padding: 10px;
+    background-color: white;
+    position: absolute;
+    border-radius: 10px;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.logo{
+    color: slateblue;
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+}
+.login{
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    background-color: teal;
+    cursor: pointer;
+}
+
+.fail{
+    color: red;
+    font-style: 12px;
+    text-align: center;
+}
+.loginCancel{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}

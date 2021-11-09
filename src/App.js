@@ -4,12 +4,17 @@ import { Room, Star } from '@material-ui/icons';
 import './app.css';
 import axios from 'axios';
 import { format } from 'timeago.js';
+import Register from './components/Register';
+import Login from './components/Login';
 
 function App() {
-  const currentUser = 'rakib';
+  const myStorage = window.localStorage;
+  const [currentUser, setCurrentUser] = useState(myStorage.getItem('user'));
   const [pins, setPins] = useState([]);
   const [currentPlaceId, setCurrentPlaceId] = useState(null);
   const [newPlace, setNewPlace] = useState(null);
+  const [showRegister, setShowRegister] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
   //input value
   const [title, setTitle] = useState(null);
   const [desc, setDesc] = useState(null);
@@ -61,6 +66,10 @@ function App() {
     } catch (error) {
       console.log(error);
     }
+  };
+  const handelLogout = () => {
+    myStorage.removeItem('user');
+    setCurrentUser(null);
   };
 
   return (
@@ -161,6 +170,36 @@ function App() {
               </form>
             </div>
           </Popup>
+        )}
+        {currentUser ? (
+          <button type="" className="btn logout" onClick={handelLogout}>
+            Log Out
+          </button>
+        ) : (
+          <div className="btns">
+            <button
+              type=""
+              className="btn login"
+              onClick={() => setShowLogin(true)}
+            >
+              Login
+            </button>
+            <button
+              type=""
+              className="btn register"
+              onClick={() => setShowRegister(true)}
+            >
+              Register
+            </button>
+          </div>
+        )}
+        {showRegister && <Register setShowRegister={setShowRegister} />}
+        {showLogin && (
+          <Login
+            setShowLogin={setShowLogin}
+            myStorage={myStorage}
+            setCurrentUser={setCurrentUser}
+          />
         )}
       </ReactMapGL>
     </div>
